@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import Alamofire
 
 class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var dataWaitIndicator: UIActivityIndicatorView!
+    
     var pageNumber = 0
     
     var mainContens = ["data1", "data2", "data3", "data4", "data5", "data6", "data7", "data8", "data9", "data10", "data11", "data12", "data13", "data14", "data15"]
@@ -19,35 +20,9 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCell")
-        //self.tableView.registerCellNib(DataTableViewCell.self)
-        
-        let manager = Alamofire.SessionManager.default
-        manager.session.configuration.timeoutIntervalForRequest = 120
-        
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/xml",
-            "signedInUserId": "18",
-            "accessToken": "66e1ec1e-8ea0-4caa-b486-8a610dc78ff9"
-        ]
-        
-        let requestBodyXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><apartmentDetails><id>225</id><addressLine1>ChangedStrAnilTesting2</addressLine1><city>Fulda</city><state>Hesse</state><country>Germany</country><zip>36037</zip><title>This is my new house</title><description>this is house for rent for 250 euros</description><sqFeet>20</sqFeet><nrBedrooms>2</nrBedrooms><nrRoommates>2</nrRoommates><nrBathrooms>1</nrBathrooms><floor>5</floor><privateBath>false</privateBath><privateRoom>true</privateRoom><kitchenInApartment>true</kitchenInApartment><hasSecurityDeposit>true</hasSecurityDeposit><creditScoreCheck>false</creditScoreCheck><monthlyRent>250</monthlyRent><securityDeposit>250</securityDeposit><availableSince>2017-01-25</availableSince><leaseEndDate>2018-01-25</leaseEndDate><flagged>0</flagged><longitude>45555000</longitude><latitude>645564564</latitude></apartmentDetails>"
-        
-        manager.request("http://ec2-35-157-127-63.eu-central-1.compute.amazonaws.com:8080/GatorRenter/apartment/updateApartment",
-                          method: .get,
-                          parameters: nil,
-                          encoding: CustomEncoding(xml: requestBodyXML),
-                          headers: headers)
-            .responseData { response in
-            let xml = SWXMLHash.parse(response.data!)
-            
-            print(xml)
-        }
-        
-        Alamofire.request("http://ec2-35-157-127-63.eu-central-1.compute.amazonaws.com:8080/GatorRenter/apartment/filterApartments?pageNumber=1&pageSize=5", method: .get, parameters: nil, headers: headers).responseData { response in
-            let xml = SWXMLHash.parse(response.data!)
-            
-            print(xml)
-        }
+        Networking.GetApartmentsByFilters(parameters: [:], success: { (response) -> Void in
+        	print(response.count)
+        	})
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -155,27 +130,6 @@ extension MainViewController : SlideMenuControllerDelegate {
     
     func rightDidClose() {
         print("SlideMenuControllerDelegate: rightDidClose")
-    }
-    
-    struct CustomPostEncoding: ParameterEncoding {
-        func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
-            var request = try URLEncoding().encode(urlRequest, with: parameters)
-            let httpBody = NSString(data: request.httpBody!, encoding: String.Encoding.utf8.rawValue)!
-            request.httpBody = httpBody.replacingOccurrences(of: "%5B%5D=", with: "=").data(using: .utf8)
-            return request
-        }
-    }
-    
-    struct CustomEncoding: ParameterEncoding {
-        let xml: String
-        
-        func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
-            var urlRequest = try urlRequest.asURLRequest()
-            
-            urlRequest.httpBody = xml.data(using: String.Encoding.utf8)
-            
-            return urlRequest
-        }
     }
 }
 				

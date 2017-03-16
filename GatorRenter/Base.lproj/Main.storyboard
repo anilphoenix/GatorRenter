@@ -30,6 +30,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="zLv-Pz-VOJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="Oup-rb-r2k" id="GKD-yg-vEr"/>
@@ -49,6 +53,7 @@
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="collectionView" destination="TKv-rY-7ph" id="pAE-g8-Mlm"/>
+                        <outlet property="dataWaitIndicator" destination="zLv-Pz-VOJ" id="k4o-id-hgA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ll4-S1-8UF" sceneMemberID="firstResponder"/>

@@ -31,6 +31,7 @@
 		E465B1771E798A8A00C67A0A /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E465B1691E79898800C67A0A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E465B17D1E798B0100C67A0A /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B17B1E798B0100C67A0A /* SWXMLHash.swift */; };
 		E465B17E1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B17C1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift */; };
+		E465B1811E7A8F8800C67A0A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B1801E7A8F8800C67A0A /* Networking.swift */; };
 		E4E1A1B91E0A811D0027283B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A1B81E0A811D0027283B /* AppDelegate.swift */; };
 		E4E1A1BB1E0A811D0027283B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A1BA1E0A811D0027283B /* MainViewController.swift */; };
 		E4E1A1BE1E0A811D0027283B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4E1A1BC1E0A811D0027283B /* Main.storyboard */; };
@@ -151,6 +152,7 @@
 		E465B15D1E79898800C67A0A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		E465B17B1E798B0100C67A0A /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWXMLHash.swift; sourceTree = "<group>"; };
 		E465B17C1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SWXMLHash+TypeConversion.swift"; sourceTree = "<group>"; };
+		E465B1801E7A8F8800C67A0A /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		E4E1A1B51E0A811D0027283B /* GatorRenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GatorRenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E1A1B81E0A811D0027283B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4E1A1BA1E0A811D0027283B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			children = (
 				E465B17B1E798B0100C67A0A /* SWXMLHash.swift */,
 				E465B17C1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift */,
+				E465B1801E7A8F8800C67A0A /* Networking.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				E465B15C1E79790500C67A0A /* CollectionViewCell.swift in Sources */,
 				E43CE7A31E78457200618C39 /* SwiftViewController.swift in Sources */,
 				E43CE7A91E78460300618C39 /* UIImageView.swift in Sources */,
+				E465B1811E7A8F8800C67A0A /* Networking.swift in Sources */,
 				E43CE7AD1E7848A100618C39 /* UIColor.swift in Sources */,
 				E43CE7A61E7845CB00618C39 /* ImageHeaderView.swift in Sources */,
 				E43CE7B11E78490900618C39 /* UIImage.swift in Sources */,
