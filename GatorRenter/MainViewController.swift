@@ -8,21 +8,65 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var dataWaitIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var dataWaitIndicator: UIActivityIndicatorView! = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     
+    @IBOutlet weak var reloadButton: UIButton!
+    
+    let reuseIdentifier = "collectionViewCell"
+
     var pageNumber = 0
-    
-    var mainContens = ["data1", "data2", "data3", "data4", "data5", "data6", "data7", "data8", "data9", "data10", "data11", "data12", "data13", "data14", "data15"]
-    
+    var serviceData = [Apartment]()
+    var imageURLsCollection: [URL] = []
+    var imagesCollection: [UIImage] = []
+    var apartmentsLoaded:Bool? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.collectionView.backgroundView = dataWaitIndicator
+        dataWaitIndicator.startAnimating()
+        
         self.collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCell")
+        
         Networking.GetApartmentsByFilters(parameters: [:], success: { (response) -> Void in
-        	print(response.count)
+                if (response != nil) {
+                    self.serviceData = response!
+                    self.apartmentsLoaded = true
+                }
+                else {
+                    self.apartmentsLoaded = false
+            	}
         	})
+        
+        Networking.getRandomImages(success: { (responseImages) -> Void in
+            self.imagesCollection = responseImages
+
+            while (self.apartmentsLoaded == nil) {
+                sleep(1)
+            }
+            if !self.apartmentsLoaded! {
+                self.alert(message: "The web-service is currently unavailable\nPlease try again later", title: "Service Unavailable")
+                self.dataWaitIndicator.stopAnimating()
+                self.collectionView.isHidden = true
+                self.reloadButton.isHidden = false
+                print("execution complete")
+            }
+            else {
+                self.dataWaitIndicator.stopAnimating()
+                self.collectionView.reloadData()
+            }
+
+        })
+        
+//        Networking.getImagesFromURLs(array: imageURLsCollection, success: { (responseImages) -> Void in
+//            self.imagesCollection = responseImages
+//            self.dataWaitIndicator.stopAnimating()
+//            self.collectionView.reloadData()
+//        })
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -37,66 +81,60 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    let reuseIdentifier = "collectionViewCell" // also enter this string as the cell identifier in the storyboard
-    var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48"]
-    
-    
-    // MARK: - UICollectionViewDataSource protocol
-    
-    // tell the collection view how many cells to make
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
-    }
-    
-    // make a cell for each cell index path
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        // get a reference to our storyboard cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionViewCell
-        
-        // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.TitleLabel.text = self.items[indexPath.item]
-//        cell.layer.borderColor = UIColor.black.cgColor
-//        cell.layer.borderWidth = 1
-//        cell.layer.cornerRadius = 8
-        
-        return cell
-    }
-    
-    // MARK: - UICollectionViewDelegate protocol
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
+    @IBAction func reloadButtonTouchUpInside(_ sender: Any) {
     }
 }
 
 
-//extension MainViewController : UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return DataTableViewCell.height()
-//    }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "SubContentsViewController", bundle: nil)
-//        let subContentsVC = storyboard.instantiateViewController(withIdentifier: "SubContentsViewController") as! SubContentsViewController
-//        self.navigationController?.pushViewController(subContentsVC, animated: true)
-//    }
-//}
-//
-//extension MainViewController : UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.mainContens.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = self.tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.identifier) as! DataTableViewCell
-//        let data = DataTableViewCellData(imageUrl: "dummy", text: mainContens[indexPath.row])
-//        cell.setData(data)
-//        return cell
-//    }
-//}
+extension MainViewController : UICollectionViewDelegate {
+
+    // MARK: - UICollectionViewDelegate protocol
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        print("You selected cell #\(indexPath.item)!")
+    }
+}
+
+extension MainViewController : UICollectionViewDataSource {
+    
+    // MARK: - UICollectionViewDataSource protocol
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.serviceData.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionViewCell
+        
+        cell.TitleLabel.text = self.serviceData[indexPath.item].title
+        cell.DateLabel.text = self.serviceData[indexPath.item].createdAt
+        let roommates = Int(self.serviceData[indexPath.item].nrRoommates)
+        let privateRoom = (self.serviceData[indexPath.item].privateRoom as String).toBool()
+        let privateBath = (self.serviceData[indexPath.item].privateBath as String).toBool()
+
+        cell.DescriptionLabel.text =  "\(roommates!) roomate" + (roommates! > 1 ? "s, ": ", ")
+            						  + (privateRoom! ? "private" : "shared") + " room, "
+        							  + (privateBath! ? "private" : "shared") + " bath"
+        
+//        let randomNum = Int(arc4random_uniform(UInt32(imagesCollection.count)))
+        cell.Image.image = imagesCollection[indexPath.item]
+        
+        return cell
+    }
+}
+
+extension MainViewController {
+    
+    func alert(message: String, title: String = "") {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+}
 
 extension MainViewController : SlideMenuControllerDelegate {
     

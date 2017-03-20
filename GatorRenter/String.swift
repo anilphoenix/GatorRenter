@@ -1,9 +1,9 @@
 //
 //  StringExtension.swift
-//  SlideMenuControllerSwift
+//  GatorRenter
 //
-//  Created by Yuji Hato on 1/22/15.
-//  Copyright (c) 2015 Yuji Hato. All rights reserved.
+//  Created by fdai4856 on 15/03/2017.
+//  Copyright © 2017 fdai4856. All rights reserved.
 //
 
 import Foundation
@@ -11,6 +11,17 @@ import Foundation
 extension String {
     static func className(_ aClass: AnyClass) -> String {
         return NSStringFromClass(aClass).components(separatedBy: ".").last!
+    }
+    
+    func toBool() -> Bool? {
+        switch self {
+        case "True", "true", "yes", "1":
+            return true
+        case "False", "false", "no", "0":
+            return false
+        default:
+            return nil
+        }
     }
     
     func substring(_ from: Int) -> String {

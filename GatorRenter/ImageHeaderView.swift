@@ -1,9 +1,9 @@
 //
 //  ImageHeaderCell.swift
-//  SlideMenuControllerSwift
+//  GatorRenter
 //
-//  Created by Yuji Hato on 11/3/15.
-//  Copyright © 2015 Yuji Hato. All rights reserved.
+//  Created by fdai4856 on 15/03/2017.
+//  Copyright © 2017 fdai4856. All rights reserved.
 //
 
 import UIKit

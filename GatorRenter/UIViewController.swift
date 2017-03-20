@@ -1,9 +1,9 @@
 //
 //  UIViewControllerExtension.swift
-//  SlideMenuControllerSwift
+//  GatorRenter
 //
-//  Created by Yuji Hato on 1/19/15.
-//  Copyright (c) 2015 Yuji Hato. All rights reserved.
+//  Created by fdai4856 on 15/03/2017.
+//  Copyright © 2017 fdai4856. All rights reserved.
 //
 
 import UIKit

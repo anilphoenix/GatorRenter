@@ -32,6 +32,10 @@
 		E465B17D1E798B0100C67A0A /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B17B1E798B0100C67A0A /* SWXMLHash.swift */; };
 		E465B17E1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B17C1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift */; };
 		E465B1811E7A8F8800C67A0A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B1801E7A8F8800C67A0A /* Networking.swift */; };
+		E465B1831E7BF6BA00C67A0A /* Apartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B1821E7BF6BA00C67A0A /* Apartment.swift */; };
+		E465B1851E7C1EB800C67A0A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B1841E7C1EB800C67A0A /* Utils.swift */; };
+		E465B1891E7C4A9700C67A0A /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E465B1881E7C4A5400C67A0A /* Montserrat-Regular.ttf */; };
+		E465B18A1E7C4AB500C67A0A /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E465B1871E7C4A5400C67A0A /* Montserrat-Bold.ttf */; };
 		E4E1A1B91E0A811D0027283B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A1B81E0A811D0027283B /* AppDelegate.swift */; };
 		E4E1A1BB1E0A811D0027283B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A1BA1E0A811D0027283B /* MainViewController.swift */; };
 		E4E1A1BE1E0A811D0027283B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4E1A1BC1E0A811D0027283B /* Main.storyboard */; };
@@ -153,6 +157,10 @@
 		E465B17B1E798B0100C67A0A /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWXMLHash.swift; sourceTree = "<group>"; };
 		E465B17C1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SWXMLHash+TypeConversion.swift"; sourceTree = "<group>"; };
 		E465B1801E7A8F8800C67A0A /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		E465B1821E7BF6BA00C67A0A /* Apartment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Apartment.swift; sourceTree = "<group>"; };
+		E465B1841E7C1EB800C67A0A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E465B1871E7C4A5400C67A0A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		E465B1881E7C4A5400C67A0A /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		E4E1A1B51E0A811D0027283B /* GatorRenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GatorRenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E1A1B81E0A811D0027283B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4E1A1BA1E0A811D0027283B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -281,8 +289,18 @@
 				E465B17B1E798B0100C67A0A /* SWXMLHash.swift */,
 				E465B17C1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift */,
 				E465B1801E7A8F8800C67A0A /* Networking.swift */,
+				E465B1841E7C1EB800C67A0A /* Utils.swift */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		E465B1861E7C4A2F00C67A0A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E465B1871E7C4A5400C67A0A /* Montserrat-Bold.ttf */,
+				E465B1881E7C4A5400C67A0A /* Montserrat-Regular.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		E4E1A1AC1E0A811D0027283B = {
@@ -309,6 +327,7 @@
 		E4E1A1B71E0A811D0027283B /* GatorRenter */ = {
 			isa = PBXGroup;
 			children = (
+				E465B1861E7C4A2F00C67A0A /* Fonts */,
 				E4E1A1B81E0A811D0027283B /* AppDelegate.swift */,
 				E4E1A1BF1E0A811D0027283B /* Assets.xcassets */,
 				E43CE7BA1E794D0200618C39 /* CustomViews */,
@@ -317,6 +336,7 @@
 				E43CE7B91E794CEC00618C39 /* Storyboards */,
 				E465B17F1E798B0900C67A0A /* Utilities */,
 				E43CE7B81E794CD600618C39 /* ViewControllers */,
+				E465B1821E7BF6BA00C67A0A /* Apartment.swift */,
 			);
 			path = GatorRenter;
 			sourceTree = "<group>";
@@ -507,10 +527,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E465B1891E7C4A9700C67A0A /* Montserrat-Regular.ttf in Resources */,
 				E43CE7B31E784E0500618C39 /* DataTableViewCell.xib in Resources */,
 				E43CE7BE1E794DCE00618C39 /* CollectionViewCell.xib in Resources */,
 				E4E1A1C31E0A811D0027283B /* LaunchScreen.storyboard in Resources */,
 				E43CE7B51E784E7400618C39 /* SubContentsViewController.storyboard in Resources */,
+				E465B18A1E7C4AB500C67A0A /* Montserrat-Bold.ttf in Resources */,
 				E4E1A1C01E0A811D0027283B /* Assets.xcassets in Resources */,
 				E4E1A1BE1E0A811D0027283B /* Main.storyboard in Resources */,
 				E43CE7A71E7845CB00618C39 /* ImageHeaderView.xib in Resources */,
@@ -553,11 +575,13 @@
 				E43CE7A11E78440600618C39 /* UIViewController.swift in Sources */,
 				E424A9D21E37B5C9001D3467 /* SlideMenuController.swift in Sources */,
 				E43CE79A1E78437A00618C39 /* BaseTableViewCell.swift in Sources */,
+				E465B1851E7C1EB800C67A0A /* Utils.swift in Sources */,
 				E43CE7AB1E78465A00618C39 /* UIView.swift in Sources */,
 				E43CE79F1E7843EA00618C39 /* UITableViewExtension.swift in Sources */,
 				E43CE79B1E78437A00618C39 /* DataTableViewCell.swift in Sources */,
 				E43CE7AF1E7848CA00618C39 /* String.swift in Sources */,
 				E4E1A1B91E0A811D0027283B /* AppDelegate.swift in Sources */,
+				E465B1831E7BF6BA00C67A0A /* Apartment.swift in Sources */,
 				E465B17E1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

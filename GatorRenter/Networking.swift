@@ -6,8 +6,9 @@
 //  Copyright © 2017 fdai4856. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
+import UIKit
 
 public enum RequestType {
     case GETAPARTMENTSBYFILTERS
@@ -16,8 +17,11 @@ public enum RequestType {
 public class Networking {
     
     static private let baseUrl = "http://ec2-35-157-127-63.eu-central-1.compute.amazonaws.com:8080/GatorRenter"
+    static private var imageURLsCollection: [URL] = []
+    static private var imagesCollection: [UIImage] = []
+    static private var responded: Bool = false
     
-    static func GetApartmentsByFilters(parameters: [String: String], success: @escaping (_ response: [String: Any]) -> Void){
+    static func GetApartmentsByFilters(parameters: [String: String], success: @escaping (_ response: [Apartment]?) -> Void){
         
 //        Integer signedInUserId
 //        String accessToken
@@ -34,6 +38,8 @@ public class Networking {
 //        Integer pageNumber
 //        Integer pageSize
         
+        responded = false
+        
         var apiURL = "/apartment/filterApartments"
         
         if (parameters.count > 0) {
@@ -44,6 +50,7 @@ public class Networking {
         }
         
         var dataResponse: [String: Any] = Dictionary<String, Any>()
+        var apartmentsList: [Apartment] = []
         
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 120
@@ -71,10 +78,64 @@ public class Networking {
         
         let url: String = baseUrl + apiURL
         
-        Alamofire.request(url, method: .get, parameters: nil, headers: headers).responseData { response in
+        manager.request(url, method: .get, parameters: nil, headers: headers).responseData { response in
             let xml = SWXMLHash.parse(response.data!)
             dataResponse = self.enumerate(indexer: xml, level: 0)
-            success(dataResponse)
+            var apartment = Apartment()
+            
+            if let notNil = dataResponse["GatorRenterResponse"] {
+                dataResponse = notNil as! [String : Any]
+            }
+            else {
+                responded = true
+                success(nil)
+            }
+//            dataResponse = dataResponse["GatorRenterResponse"] as! [String : Any]
+
+            for (key, value) in dataResponse {
+                if (key != "status") {
+                    let tempApt = value as! [String : String]
+
+                    if ((key.range(of: "apartmentDetails")) != nil || key.range(of: "apartmentsList") != nil) {
+                        apartment.internalName = key
+                        apartment.id = tempApt["id"]!
+                        apartment.active = tempApt["active"]!
+                        apartment.createdAt = tempApt["createdAt"]!
+                        apartment.updatedAt = tempApt["updatedAt"]!
+                        apartment.state = tempApt["state"]!
+                        apartment.addressLine1 = tempApt["addressLine1"]!
+                        apartment.city = tempApt["city"]!
+                        apartment.country = tempApt["country"]!
+                        apartment.zip = tempApt["zip"]!
+                        apartment.title = tempApt["title"]!
+                        apartment.description = tempApt["description"]!
+                        apartment.sqFeet = tempApt["sqFeet"]!
+                        apartment.nrBedrooms = tempApt["nrBedrooms"]!
+                        apartment.nrRoommates = tempApt["nrRoommates"]!
+                        apartment.nrBathrooms = tempApt["nrBathrooms"]!
+                        apartment.floor = tempApt["floor"]!
+                        apartment.privateRoom = tempApt["privateRoom"]!
+                        apartment.privateBath = tempApt["privateBath"]!
+                        apartment.kitchenInApartment = tempApt["kitchenInApartment"]!
+                        apartment.hasSecurityDeposit = tempApt["hasSecurityDeposit"]!
+                        apartment.creditScoreCheck = tempApt["creditScoreCheck"]!
+                        apartment.monthlyRent = tempApt["monthlyRent"]!
+                        apartment.securityDeposit = tempApt["securityDeposit"]!
+                        apartment.availableSince = tempApt["availableSince"]!
+                        apartment.leaseEndDate = tempApt["leaseEndDate"]!
+                        apartment.longitude = tempApt["longitude"]!
+                        apartment.flagged = tempApt["flagged"]!
+                        apartment.latitude = tempApt["latitude"]!
+                    }
+                    
+                    apartmentsList.append(apartment)
+                }
+            }
+            
+            apartmentsList.sort{ $0.internalName < $1.internalName }
+            if !responded {
+            	success(apartmentsList)
+            }
         }
     }
     
@@ -83,6 +144,83 @@ public class Networking {
         
         return Dictionary()
     }
+    
+    public static func getRandomImages(success: @escaping (_ response: [UIImage]) -> Void) {
+        let url = "https://pixabay.com/api/?key=4847699-165c5dd0c9629b5c251ca193a&q=apartment&image_type=photo&page=1&per_page=5&order=popular"
+        let session = URLSession(configuration: .default)
+        var counter = 0
+        
+        Alamofire.request(url, method: .get, parameters: nil, headers: nil).responseJSON { response in
+            if let result = response.result.value {
+                let JSON = result as! NSDictionary
+                
+                let imageArray = JSON["hits"] as! NSArray
+                
+                for image in imageArray {
+                    //let imagenameurl = URL(string: (image as! NSDictionary)["userImageURL"] as! String)
+                    if let temp = URL(string: (image as! NSDictionary)["userImageURL"] as! String) {
+                    	imageURLsCollection.append(temp)
+                    }
+                }
+                
+                for fetchUrl in imageURLsCollection {
+                    let downloadPicTask = session.dataTask(with: fetchUrl) { (data, response, error) in
+                        if let e = error {
+                            print("Error downloading cat picture: \(e)")
+                        } else {
+                            if let res = response as? HTTPURLResponse {
+                                print("Downloaded picture with response code \(res.statusCode)")
+                                if let imageData = data {
+                                    imagesCollection.append(UIImage(data: imageData)!)
+                                } else {
+                                    print("Couldn't get image: Image is nil")
+                                }
+                            } else {
+                                print("Couldn't get response code for some reason")
+                            }
+                        }
+                        if(counter >= imageURLsCollection.count-1){
+                            success(imagesCollection)
+                        }
+                        
+                        counter += 1
+                    }
+                    
+                    downloadPicTask.resume()
+                }
+            }
+        }
+    }
+    
+//    public static func getImagesFromURLs(array: [URL], success: @escaping (_ response: [UIImage]) -> Void) {
+//        let session = URLSession(configuration: .default)
+//        var counter = 0
+//        
+//        for fetchUrl in imageURLsCollection {
+//            let downloadPicTask = session.dataTask(with: fetchUrl) { (data, response, error) in
+//                if let e = error {
+//                    print("Error downloading cat picture: \(e)")
+//                } else {
+//                    if let res = response as? HTTPURLResponse {
+//                        print("Downloaded picture with response code \(res.statusCode)")
+//                        if let imageData = data {
+//                            imagesCollection.append(UIImage(data: imageData)!)
+//                        } else {
+//                            print("Couldn't get image: Image is nil")
+//                        }
+//                    } else {
+//                        print("Couldn't get response code for some reason")
+//                    }
+//                }
+//                if(counter >= imageURLsCollection.count){
+//                    success(imagesCollection)
+//                }
+//            }
+//            
+//            downloadPicTask.resume()
+//            counter += 1
+//        }
+//    }
     
     private static func enumerate(indexer: XMLIndexer, level: Int) -> [String: Any]{
         
