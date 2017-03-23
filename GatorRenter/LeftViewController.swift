@@ -10,9 +10,9 @@ import UIKit
 
 enum LeftMenu: Int {
     case main = 0
-    case swift
-    case java
-    case go
+    case login
+    case signup
+    case logout
     case nonMenu
 }
 
@@ -23,11 +23,11 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
     @IBOutlet weak var tableView: UITableView!
-    var menus = ["Main", "Swift"]//, "Java", "Go", "NonMenu"]
+    var menus = ["Home", "Login", "Signup"]//, "Logout", "NonMenu"]
     var mainViewController: UIViewController!
-    var swiftViewController: UIViewController!
-    var javaViewController: UIViewController!
-    var goViewController: UIViewController!
+    var loginViewController: UIViewController!
+    var signupViewController: UIViewController!
+    var logoutViewController: UIViewController!
     var nonMenuViewController: UIViewController!
     var imageHeaderView: ImageHeaderView!
     
@@ -41,15 +41,15 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         self.tableView.separatorColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let swiftViewController = storyboard.instantiateViewController(withIdentifier: "SwiftViewController") as! SwiftViewController
-        self.swiftViewController = UINavigationController(rootViewController: swiftViewController)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.loginViewController = UINavigationController(rootViewController: loginViewController)
         
-//        let javaViewController = storyboard.instantiateViewController(withIdentifier: "JavaViewController") as! JavaViewController
-//        self.javaViewController = UINavigationController(rootViewController: javaViewController)
-//        
-//        let goViewController = storyboard.instantiateViewController(withIdentifier: "GoViewController") as! GoViewController
-//        self.goViewController = UINavigationController(rootViewController: goViewController)
-//        
+        let signupViewController = storyboard.instantiateViewController(withIdentifier: "SignupViewController") as! SignupViewController
+        self.signupViewController = UINavigationController(rootViewController: signupViewController)
+        
+//        let logoutViewController = storyboard.instantiateViewController(withIdentifier: "LogoutViewController") as! LogoutViewController
+//        self.logoutViewController = UINavigationController(rootViewController: logoutViewController)
+
 //        let nonMenuController = storyboard.instantiateViewController(withIdentifier: "NonMenuController") as! NonMenuController
 //        nonMenuController.delegate = self
 //        self.nonMenuViewController = UINavigationController(rootViewController: nonMenuController)
@@ -74,12 +74,12 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         switch menu {
         case .main:
             self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
-        case .swift:
-            self.slideMenuController()?.changeMainViewController(self.swiftViewController, close: true)
-        case .java:
-            self.slideMenuController()?.changeMainViewController(self.javaViewController, close: true)
-        case .go:
-            self.slideMenuController()?.changeMainViewController(self.goViewController, close: true)
+        case .login:
+            self.slideMenuController()?.changeMainViewController(self.loginViewController, close: true)
+        case .signup:
+            self.slideMenuController()?.changeMainViewController(self.signupViewController, close: true)
+        case .logout:
+            self.slideMenuController()?.changeMainViewController(self.logoutViewController, close: true)
         case .nonMenu:
             self.slideMenuController()?.changeMainViewController(self.nonMenuViewController, close: true)
         }
@@ -90,7 +90,7 @@ extension LeftViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .main, .swift, .java, .go, .nonMenu:
+            case .main, .login, .signup, .logout, .nonMenu:
                 return BaseTableViewCell.height()
             }
         }
@@ -120,7 +120,7 @@ extension LeftViewController : UITableViewDataSource {
         
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .main, .swift, .java, .go, .nonMenu:
+            case .main, .login, .signup, .logout, .nonMenu:
                 let cell = BaseTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: BaseTableViewCell.identifier)
                 cell.setData(menus[indexPath.row])
                 return cell

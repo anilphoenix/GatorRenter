@@ -15,7 +15,7 @@
 		E43CE79D1E7843C700618C39 /* SubContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE79C1E7843C700618C39 /* SubContentsViewController.swift */; };
 		E43CE79F1E7843EA00618C39 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE79E1E7843EA00618C39 /* UITableViewExtension.swift */; };
 		E43CE7A11E78440600618C39 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7A01E78440600618C39 /* UIViewController.swift */; };
-		E43CE7A31E78457200618C39 /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7A21E78457200618C39 /* SwiftViewController.swift */; };
+		E43CE7A31E78457200618C39 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7A21E78457200618C39 /* LoginViewController.swift */; };
 		E43CE7A61E7845CB00618C39 /* ImageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7A41E7845CB00618C39 /* ImageHeaderView.swift */; };
 		E43CE7A71E7845CB00618C39 /* ImageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43CE7A51E7845CB00618C39 /* ImageHeaderView.xib */; };
 		E43CE7A91E78460300618C39 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7A81E78460300618C39 /* UIImageView.swift */; };
@@ -36,6 +36,8 @@
 		E465B1851E7C1EB800C67A0A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B1841E7C1EB800C67A0A /* Utils.swift */; };
 		E465B1891E7C4A9700C67A0A /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E465B1881E7C4A5400C67A0A /* Montserrat-Regular.ttf */; };
 		E465B18A1E7C4AB500C67A0A /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E465B1871E7C4A5400C67A0A /* Montserrat-Bold.ttf */; };
+		E465B18C1E803DF100C67A0A /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B18B1E803DF100C67A0A /* CheckBox.swift */; };
+		E465B18E1E82CCF800C67A0A /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B18D1E82CCF800C67A0A /* SignupViewController.swift */; };
 		E4E1A1B91E0A811D0027283B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A1B81E0A811D0027283B /* AppDelegate.swift */; };
 		E4E1A1BB1E0A811D0027283B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A1BA1E0A811D0027283B /* MainViewController.swift */; };
 		E4E1A1BE1E0A811D0027283B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4E1A1BC1E0A811D0027283B /* Main.storyboard */; };
@@ -141,7 +143,7 @@
 		E43CE79C1E7843C700618C39 /* SubContentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubContentsViewController.swift; sourceTree = "<group>"; };
 		E43CE79E1E7843EA00618C39 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		E43CE7A01E78440600618C39 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		E43CE7A21E78457200618C39 /* SwiftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftViewController.swift; sourceTree = "<group>"; };
+		E43CE7A21E78457200618C39 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E43CE7A41E7845CB00618C39 /* ImageHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHeaderView.swift; sourceTree = "<group>"; };
 		E43CE7A51E7845CB00618C39 /* ImageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageHeaderView.xib; sourceTree = "<group>"; };
 		E43CE7A81E78460300618C39 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
@@ -161,6 +163,8 @@
 		E465B1841E7C1EB800C67A0A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E465B1871E7C4A5400C67A0A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		E465B1881E7C4A5400C67A0A /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		E465B18B1E803DF100C67A0A /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		E465B18D1E82CCF800C67A0A /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		E4E1A1B51E0A811D0027283B /* GatorRenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GatorRenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E1A1B81E0A811D0027283B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4E1A1BA1E0A811D0027283B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -234,7 +238,8 @@
 				E43CE7961E78263200618C39 /* RightViewController.swift */,
 				E424A9D11E37B5C9001D3467 /* SlideMenuController.swift */,
 				E43CE79C1E7843C700618C39 /* SubContentsViewController.swift */,
-				E43CE7A21E78457200618C39 /* SwiftViewController.swift */,
+				E43CE7A21E78457200618C39 /* LoginViewController.swift */,
+				E465B18D1E82CCF800C67A0A /* SignupViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 				E465B17F1E798B0900C67A0A /* Utilities */,
 				E43CE7B81E794CD600618C39 /* ViewControllers */,
 				E465B1821E7BF6BA00C67A0A /* Apartment.swift */,
+				E465B18B1E803DF100C67A0A /* CheckBox.swift */,
 			);
 			path = GatorRenter;
 			sourceTree = "<group>";
@@ -564,10 +570,11 @@
 				E43CE79D1E7843C700618C39 /* SubContentsViewController.swift in Sources */,
 				E465B17D1E798B0100C67A0A /* SWXMLHash.swift in Sources */,
 				E465B15C1E79790500C67A0A /* CollectionViewCell.swift in Sources */,
-				E43CE7A31E78457200618C39 /* SwiftViewController.swift in Sources */,
+				E43CE7A31E78457200618C39 /* LoginViewController.swift in Sources */,
 				E43CE7A91E78460300618C39 /* UIImageView.swift in Sources */,
 				E465B1811E7A8F8800C67A0A /* Networking.swift in Sources */,
 				E43CE7AD1E7848A100618C39 /* UIColor.swift in Sources */,
+				E465B18C1E803DF100C67A0A /* CheckBox.swift in Sources */,
 				E43CE7A61E7845CB00618C39 /* ImageHeaderView.swift in Sources */,
 				E43CE7B11E78490900618C39 /* UIImage.swift in Sources */,
 				E43CE7951E7825DF00618C39 /* LeftViewController.swift in Sources */,
@@ -581,6 +588,7 @@
 				E43CE79B1E78437A00618C39 /* DataTableViewCell.swift in Sources */,
 				E43CE7AF1E7848CA00618C39 /* String.swift in Sources */,
 				E4E1A1B91E0A811D0027283B /* AppDelegate.swift in Sources */,
+				E465B18E1E82CCF800C67A0A /* SignupViewController.swift in Sources */,
 				E465B1831E7BF6BA00C67A0A /* Apartment.swift in Sources */,
 				E465B17E1E798B0100C67A0A /* SWXMLHash+TypeConversion.swift in Sources */,
 			);

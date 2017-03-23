@@ -16,7 +16,9 @@ public enum RequestType {
 
 public class Networking {
     
-    static private let baseUrl = "http://ec2-35-157-127-63.eu-central-1.compute.amazonaws.com:8080/GatorRenter"
+    static private let baseUrl = "http://ec2-35-158-6-63.eu-central-1.compute.amazonaws.com:8080/GatorRenter"
+    static private var searchQuery = ""
+
     static private var imageURLsCollection: [URL] = []
     static private var imagesCollection: [UIImage] = []
     static private var responded: Bool = false
@@ -44,8 +46,16 @@ public class Networking {
         
         if (parameters.count > 0) {
             apiURL += "?"
+            searchQuery = ""
             for (key, value) in parameters {
-                apiURL += "" + key + "=" + value + "&"
+                if (!value.isEmpty) {
+                    if (key == "SearchTextField") {
+                        searchQuery = value
+                    }
+                    else {
+                    	apiURL += "" + key + "=" + value + "&"
+                    }
+                }
             }
         }
         
@@ -96,7 +106,7 @@ public class Networking {
                 if (key != "status") {
                     let tempApt = value as! [String : String]
 
-                    if ((key.range(of: "apartmentDetails")) != nil || key.range(of: "apartmentsList") != nil) {
+                    if (key.range(of: "apartmentDetails")) != nil || key.range(of: "apartmentsList") != nil {
                         apartment.internalName = key
                         apartment.id = tempApt["id"]!
                         apartment.active = tempApt["active"]!
@@ -126,9 +136,20 @@ public class Networking {
                         apartment.longitude = tempApt["longitude"]!
                         apartment.flagged = tempApt["flagged"]!
                         apartment.latitude = tempApt["latitude"]!
+                        
+                        apartment.searchableField = tempApt["addressLine1"]! + "_" +
+                        							tempApt["city"]! + "_" +
+                        							tempApt["country"]! + "_" +
+                        							tempApt["zip"]! + "_" +
+                        							tempApt["title"]! + "_" +
+                        							tempApt["description"]! + "_" +
+                        							tempApt["sqFeet"]!
                     }
                     
-                    apartmentsList.append(apartment)
+                    if searchQuery.isEmpty
+                        || apartment.searchableField.lowercased().range(of:searchQuery) != nil {
+                    	apartmentsList.append(apartment)
+                    }
                 }
             }
             
@@ -146,7 +167,7 @@ public class Networking {
     }
     
     public static func getRandomImages(success: @escaping (_ response: [UIImage]) -> Void) {
-        let url = "https://pixabay.com/api/?key=4847699-165c5dd0c9629b5c251ca193a&q=apartment&image_type=photo&page=1&per_page=5&order=popular"
+        let url = "https://pixabay.com/api/?key=4847699-165c5dd0c9629b5c251ca193a&q=apartment&image_type=photo&page=1&per_page=20&order=popular"
         let session = URLSession(configuration: .default)
         var counter = 0
         

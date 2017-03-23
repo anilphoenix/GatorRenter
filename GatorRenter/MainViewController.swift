@@ -12,7 +12,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var dataWaitIndicator: UIActivityIndicatorView! = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-    
     @IBOutlet weak var reloadButton: UIButton!
     
     let reuseIdentifier = "collectionViewCell"
@@ -26,24 +25,37 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:Notification.Name(rawValue:"UpdateNotification"),
+                       object:nil, queue:nil) {
+                        notification in
+                        self.serviceData = [Apartment]()
+                        self.collectionView.reloadData()
+                        self.loadAllData(params: notification.userInfo as! [String : String])
+        }
+
+        loadAllData(params: [:])
+    }
+    
+    func loadAllData (params: [String: String]) {
         self.collectionView.backgroundView = dataWaitIndicator
         dataWaitIndicator.startAnimating()
         
         self.collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCell")
         
-        Networking.GetApartmentsByFilters(parameters: [:], success: { (response) -> Void in
-                if (response != nil) {
-                    self.serviceData = response!
-                    self.apartmentsLoaded = true
-                }
-                else {
-                    self.apartmentsLoaded = false
-            	}
-        	})
+        Networking.GetApartmentsByFilters(parameters: params , success: { (response) -> Void in
+            if (response != nil) {
+                self.serviceData = response!
+                self.apartmentsLoaded = true
+            }
+            else {
+                self.apartmentsLoaded = false
+            }
+        })
         
         Networking.getRandomImages(success: { (responseImages) -> Void in
             self.imagesCollection = responseImages
-
+            
             while (self.apartmentsLoaded == nil) {
                 sleep(1)
             }
@@ -52,21 +64,13 @@ class MainViewController: UIViewController {
                 self.dataWaitIndicator.stopAnimating()
                 self.collectionView.isHidden = true
                 self.reloadButton.isHidden = false
-                print("execution complete")
             }
             else {
                 self.dataWaitIndicator.stopAnimating()
                 self.collectionView.reloadData()
             }
-
+            
         })
-        
-//        Networking.getImagesFromURLs(array: imageURLsCollection, success: { (responseImages) -> Void in
-//            self.imagesCollection = responseImages
-//            self.dataWaitIndicator.stopAnimating()
-//            self.collectionView.reloadData()
-//        })
-        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -82,6 +86,10 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     @IBAction func reloadButtonTouchUpInside(_ sender: Any) {
+        self.reloadButton.isHidden = true
+        self.dataWaitIndicator.isHidden = false
+        self.dataWaitIndicator.startAnimating()
+        loadAllData(params: [:])
     }
 }
 
@@ -92,7 +100,7 @@ extension MainViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        print("You selected cell #\(indexPath.item)!")
+        print("Selected cell #\(indexPath.item)!")
     }
 }
 

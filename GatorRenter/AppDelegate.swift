@@ -12,11 +12,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var slideMenuController: SlideMenuController? = nil
 
     fileprivate func createMenuView() {
         
-        // create viewController code...
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:Notification.Name(rawValue:"closeRight"),
+                       object:nil, queue:nil) {
+                        notification in
+                    let shouldClose = (notification.userInfo as! [String : Bool])["close"]
+                    if shouldClose! {
+                        self.slideMenuController?.closeRight()
+                    }
+        }
+
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
@@ -29,9 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         leftViewController.mainViewController = nvc
         
-        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController, rightMenuViewController: rightViewController)
-        slideMenuController.automaticallyAdjustsScrollViewInsets = true
-        slideMenuController.delegate = mainViewController
+        slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController, rightMenuViewController: rightViewController)
+        slideMenuController?.automaticallyAdjustsScrollViewInsets = true
+        slideMenuController?.delegate = mainViewController
         self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()

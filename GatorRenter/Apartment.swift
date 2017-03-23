@@ -38,6 +38,7 @@ public struct Apartment {
     public var longitude: String
     public var flagged: String
     public var latitude: String
+    public var searchableField: String
     
     init () {
         self.internalName = ""
@@ -69,6 +70,7 @@ public struct Apartment {
         self.longitude = ""
         self.flagged = ""
         self.latitude = ""
+        self.searchableField = ""
 
     }
     
@@ -101,7 +103,8 @@ public struct Apartment {
          leaseEndDate: String,
          longitude: String,
          flagged: String,
-         latitude: String) {
+         latitude: String,
+         searchableField: String) {
         
         self.internalName = internalName
         self.id = id
@@ -132,5 +135,6 @@ public struct Apartment {
         self.longitude = longitude
         self.flagged = flagged
         self.latitude = latitude
+        self.searchableField = searchableField
     }
 }
