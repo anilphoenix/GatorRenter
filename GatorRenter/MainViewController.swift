@@ -46,30 +46,15 @@ class MainViewController: UIViewController {
         Networking.GetApartmentsByFilters(parameters: params , success: { (response) -> Void in
             if (response != nil) {
                 self.serviceData = response!
-                self.apartmentsLoaded = true
+                self.dataWaitIndicator.stopAnimating()
+                self.collectionView.reloadData()
             }
             else {
-                self.apartmentsLoaded = false
-            }
-        })
-        
-        Networking.getRandomImages(success: { (responseImages) -> Void in
-            self.imagesCollection = responseImages
-            
-            while (self.apartmentsLoaded == nil) {
-                sleep(1)
-            }
-            if !self.apartmentsLoaded! {
                 self.alert(message: "The web-service is currently unavailable\nPlease try again later", title: "Service Unavailable")
                 self.dataWaitIndicator.stopAnimating()
                 self.collectionView.isHidden = true
                 self.reloadButton.isHidden = false
             }
-            else {
-                self.dataWaitIndicator.stopAnimating()
-                self.collectionView.reloadData()
-            }
-            
         })
     }
     
@@ -99,6 +84,14 @@ extension MainViewController : UICollectionViewDelegate {
     // MARK: - UICollectionViewDelegate protocol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let apartment = self.serviceData[indexPath.item]
+        
+        let storyboard = UIStoryboard(name: "SubContentsViewController", bundle: nil)
+        let subContentsVC = storyboard.instantiateViewController(withIdentifier: "SubContentsViewController") as! SubContentsViewController
+
+        subContentsVC.apartment = apartment
+        self.navigationController?.pushViewController(subContentsVC, animated: true)
 
         print("Selected cell #\(indexPath.item)!")
     }
@@ -126,8 +119,38 @@ extension MainViewController : UICollectionViewDataSource {
             						  + (privateRoom! ? "private" : "shared") + " room, "
         							  + (privateBath! ? "private" : "shared") + " bath"
         
-//        let randomNum = Int(arc4random_uniform(UInt32(imagesCollection.count)))
-        cell.Image.image = imagesCollection[indexPath.item]
+        cell.Image.isHidden = true
+        cell.imageWaitActivityIndicator.isHidden = false
+        cell.imageWaitActivityIndicator.startAnimating()
+        
+        let url = URL(string: "http://lorempixel.com/640/300/city/")!
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 15
+        configuration.timeoutIntervalForResource = 15
+        configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
+        let session = URLSession(configuration: configuration)
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode / 100 != 2 {
+                    return
+                }
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        cell.Image.image = image
+                        cell.Image.isHidden = false
+                        cell.imageWaitActivityIndicator.isHidden = true
+                        cell.imageWaitActivityIndicator.stopAnimating()
+                    })
+                }
+            }
+        }
+        task.resume()
+        
+        cell.apartment = self.serviceData[indexPath.item]
         
         return cell
     }

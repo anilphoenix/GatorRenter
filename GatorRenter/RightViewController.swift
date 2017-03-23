@@ -46,8 +46,6 @@ class RightViewController : UIViewController {
                            "monthlyRentMin": minPriceTextbox.text ?? "",
                            "monthlyRentMax": maxPriceTextbox.text ?? "",
                            ])
-        nc.post(name:Notification.Name(rawValue:"closeRight"),
-                object: nil,
-                userInfo: ["close" : true])
+        closeRight()
     }
 }

@@ -11,11 +11,14 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var Image: UIImageView!
+    @IBOutlet weak var imageWaitActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var DateLabel: UILabel!
     @IBOutlet weak var PriceLabel: UILabel!
     @IBOutlet weak var TitleLabel: UILabel!
     @IBOutlet weak var DescriptionLabel: UILabel!
     @IBOutlet weak var RentNowButton: UIButton!
+    
+    var apartment: Apartment = Apartment()
     
     override func awakeFromNib() {
         super.awakeFromNib()

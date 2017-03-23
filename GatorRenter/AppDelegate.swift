@@ -16,17 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     fileprivate func createMenuView() {
         
-        let nc = NotificationCenter.default
-        nc.addObserver(forName:Notification.Name(rawValue:"closeRight"),
-                       object:nil, queue:nil) {
-                        notification in
-                    let shouldClose = (notification.userInfo as! [String : Bool])["close"]
-                    if shouldClose! {
-                        self.slideMenuController?.closeRight()
-                    }
-        }
-
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController

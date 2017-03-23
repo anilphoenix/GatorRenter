@@ -16,12 +16,58 @@ public enum RequestType {
 
 public class Networking {
     
-    static private let baseUrl = "http://ec2-35-158-6-63.eu-central-1.compute.amazonaws.com:8080/GatorRenter"
+    static private let baseUrl = "http://ec2-35-158-6-225.eu-central-1.compute.amazonaws.com:8080/GatorRenter"
+	let defaults = UserDefaults.standard
+    
     static private var searchQuery = ""
-
     static private var imageURLsCollection: [URL] = []
     static private var imagesCollection: [UIImage] = []
     static private var responded: Bool = false
+    static private var responded1: Bool = false
+    
+    
+    
+    static func Login(email: String, password: String, success: @escaping (_ response: [String: Any]?) -> Void) {
+
+        responded1 = false
+
+        let apiURL = "/user/login"
+
+        var dataResponse: [String: Any] = Dictionary<String, Any>()
+        
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 120
+        
+        let headers: HTTPHeaders = [
+            "email": email,
+            "password": password
+        ]
+
+        let url: String = baseUrl + apiURL
+        
+        manager.request(url, method: .get, parameters: nil, headers: headers).responseData { response in
+            let xml = SWXMLHash.parse(response.data!)
+            dataResponse = self.enumerate(indexer: xml, level: 0)
+            
+            if let notNil = dataResponse["GatorRenterResponse"] {
+                dataResponse = notNil as! [String : Any]
+            }
+            else {
+                responded1 = true
+                success(nil)
+            }
+            
+            let statusDict = dataResponse["status"]
+            dataResponse["status"] = nil
+            
+            UserDefaults.standard.set(dataResponse, forKey: "UserInfo")
+            print(UserDefaults.standard.value(forKey: "UserInfo") ?? "No UserInto in UserDefaults")
+            
+            if !responded1 {
+                success(statusDict as! [String : Any]?)
+            }
+        }
+    }
     
     static func GetApartmentsByFilters(parameters: [String: String], success: @escaping (_ response: [Apartment]?) -> Void){
         
@@ -187,7 +233,7 @@ public class Networking {
                 for fetchUrl in imageURLsCollection {
                     let downloadPicTask = session.dataTask(with: fetchUrl) { (data, response, error) in
                         if let e = error {
-                            print("Error downloading cat picture: \(e)")
+                            print("Error downloading picture: \(e)")
                         } else {
                             if let res = response as? HTTPURLResponse {
                                 print("Downloaded picture with response code \(res.statusCode)")
@@ -212,36 +258,6 @@ public class Networking {
             }
         }
     }
-    
-//    public static func getImagesFromURLs(array: [URL], success: @escaping (_ response: [UIImage]) -> Void) {
-//        let session = URLSession(configuration: .default)
-//        var counter = 0
-//        
-//        for fetchUrl in imageURLsCollection {
-//            let downloadPicTask = session.dataTask(with: fetchUrl) { (data, response, error) in
-//                if let e = error {
-//                    print("Error downloading cat picture: \(e)")
-//                } else {
-//                    if let res = response as? HTTPURLResponse {
-//                        print("Downloaded picture with response code \(res.statusCode)")
-//                        if let imageData = data {
-//                            imagesCollection.append(UIImage(data: imageData)!)
-//                        } else {
-//                            print("Couldn't get image: Image is nil")
-//                        }
-//                    } else {
-//                        print("Couldn't get response code for some reason")
-//                    }
-//                }
-//                if(counter >= imageURLsCollection.count){
-//                    success(imagesCollection)
-//                }
-//            }
-//            
-//            downloadPicTask.resume()
-//            counter += 1
-//        }
-//    }
     
     private static func enumerate(indexer: XMLIndexer, level: Int) -> [String: Any]{
         

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E424A9D21E37B5C9001D3467 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E424A9D11E37B5C9001D3467 /* SlideMenuController.swift */; };
+		5E1AF2AE1E84740000A8DB7F /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1AF2AD1E84740000A8DB7F /* SlideMenuController.swift */; };
 		E43CE7951E7825DF00618C39 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7941E7825DF00618C39 /* LeftViewController.swift */; };
 		E43CE7971E78263200618C39 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7961E78263200618C39 /* RightViewController.swift */; };
 		E43CE79A1E78437A00618C39 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7981E78437A00618C39 /* BaseTableViewCell.swift */; };
@@ -38,6 +38,7 @@
 		E465B18A1E7C4AB500C67A0A /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E465B1871E7C4A5400C67A0A /* Montserrat-Bold.ttf */; };
 		E465B18C1E803DF100C67A0A /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B18B1E803DF100C67A0A /* CheckBox.swift */; };
 		E465B18E1E82CCF800C67A0A /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B18D1E82CCF800C67A0A /* SignupViewController.swift */; };
+		E465B1901E83E24F00C67A0A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465B18F1E83E24F00C67A0A /* TextField.swift */; };
 		E4E1A1B91E0A811D0027283B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A1B81E0A811D0027283B /* AppDelegate.swift */; };
 		E4E1A1BB1E0A811D0027283B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A1BA1E0A811D0027283B /* MainViewController.swift */; };
 		E4E1A1BE1E0A811D0027283B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4E1A1BC1E0A811D0027283B /* Main.storyboard */; };
@@ -135,7 +136,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E424A9D11E37B5C9001D3467 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideMenuController.swift; path = ../../SlideMenuControllerSwift/SlideMenuController.swift; sourceTree = "<group>"; };
+		5E1AF2AD1E84740000A8DB7F /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		E43CE7941E7825DF00618C39 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		E43CE7961E78263200618C39 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		E43CE7981E78437A00618C39 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		E465B1881E7C4A5400C67A0A /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		E465B18B1E803DF100C67A0A /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		E465B18D1E82CCF800C67A0A /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		E465B18F1E83E24F00C67A0A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		E4E1A1B51E0A811D0027283B /* GatorRenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GatorRenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E1A1B81E0A811D0027283B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4E1A1BA1E0A811D0027283B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -236,7 +238,7 @@
 				E43CE7941E7825DF00618C39 /* LeftViewController.swift */,
 				E4E1A1BA1E0A811D0027283B /* MainViewController.swift */,
 				E43CE7961E78263200618C39 /* RightViewController.swift */,
-				E424A9D11E37B5C9001D3467 /* SlideMenuController.swift */,
+				5E1AF2AD1E84740000A8DB7F /* SlideMenuController.swift */,
 				E43CE79C1E7843C700618C39 /* SubContentsViewController.swift */,
 				E43CE7A21E78457200618C39 /* LoginViewController.swift */,
 				E465B18D1E82CCF800C67A0A /* SignupViewController.swift */,
@@ -343,6 +345,7 @@
 				E43CE7B81E794CD600618C39 /* ViewControllers */,
 				E465B1821E7BF6BA00C67A0A /* Apartment.swift */,
 				E465B18B1E803DF100C67A0A /* CheckBox.swift */,
+				E465B18F1E83E24F00C67A0A /* TextField.swift */,
 			);
 			path = GatorRenter;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				E465B17D1E798B0100C67A0A /* SWXMLHash.swift in Sources */,
 				E465B15C1E79790500C67A0A /* CollectionViewCell.swift in Sources */,
 				E43CE7A31E78457200618C39 /* LoginViewController.swift in Sources */,
+				E465B1901E83E24F00C67A0A /* TextField.swift in Sources */,
 				E43CE7A91E78460300618C39 /* UIImageView.swift in Sources */,
 				E465B1811E7A8F8800C67A0A /* Networking.swift in Sources */,
 				E43CE7AD1E7848A100618C39 /* UIColor.swift in Sources */,
@@ -580,8 +584,8 @@
 				E43CE7951E7825DF00618C39 /* LeftViewController.swift in Sources */,
 				E43CE7971E78263200618C39 /* RightViewController.swift in Sources */,
 				E43CE7A11E78440600618C39 /* UIViewController.swift in Sources */,
-				E424A9D21E37B5C9001D3467 /* SlideMenuController.swift in Sources */,
 				E43CE79A1E78437A00618C39 /* BaseTableViewCell.swift in Sources */,
+				5E1AF2AE1E84740000A8DB7F /* SlideMenuController.swift in Sources */,
 				E465B1851E7C1EB800C67A0A /* Utils.swift in Sources */,
 				E43CE7AB1E78465A00618C39 /* UIView.swift in Sources */,
 				E43CE79F1E7843EA00618C39 /* UITableViewExtension.swift in Sources */,
