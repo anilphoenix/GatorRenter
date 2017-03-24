@@ -1,7 +1,9 @@
 //
 //  SlideMenuController.swift
+//  GatorRenter
 //
-//  Created by Yuji Hato on 12/3/14.
+//  Created by fdai4856 on 21/12/2016.
+//  Copyright © 2016 fdai4856. All rights reserved.
 //
 
 import Foundation

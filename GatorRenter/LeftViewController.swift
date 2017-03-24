@@ -82,11 +82,11 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
 //        let logoutViewController = storyboard.instantiateViewController(withIdentifier: "LogoutViewController") as! LogoutViewController
 //        self.logoutViewController = UINavigationController(rootViewController: logoutViewController)
         
-//        let myApartmentsViewController = storyboard.instantiateViewController(withIdentifier: "MyApartmentsViewController") as! MyApartmentsViewController
-//        self.myApartmentsViewController = UINavigationController(rootViewController: myApartmentsViewController)
+        let myApartmentsViewController = storyboard.instantiateViewController(withIdentifier: "MyApartmentsViewController") as! MyApartmentsViewController
+        self.myApartmentsViewController = UINavigationController(rootViewController: myApartmentsViewController)
         
-//        let accountViewController = storyboard.instantiateViewController(withIdentifier: "AccountViewController") as! AccountViewController
-//        self.accountViewController = UINavigationController(rootViewController: accountViewController)
+        let accountViewController = storyboard.instantiateViewController(withIdentifier: "AccountViewController") as! AccountViewController
+        self.accountViewController = UINavigationController(rootViewController: accountViewController)
     
         
 //        let nonMenuController = storyboard.instantiateViewController(withIdentifier: "NonMenuController") as! NonMenuController

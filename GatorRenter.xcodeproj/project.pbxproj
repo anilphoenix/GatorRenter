@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5E1AF2AE1E84740000A8DB7F /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1AF2AD1E84740000A8DB7F /* SlideMenuController.swift */; };
+		5E1AF2B01E84777300A8DB7F /* MyApartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1AF2AF1E84777200A8DB7F /* MyApartmentsViewController.swift */; };
+		5E1AF2B21E8481AD00A8DB7F /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1AF2B11E8481AD00A8DB7F /* AccountViewController.swift */; };
+		5E1AF2B41E848E1700A8DB7F /* AddApartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1AF2B31E848E1700A8DB7F /* AddApartmentViewController.swift */; };
 		E43CE7951E7825DF00618C39 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7941E7825DF00618C39 /* LeftViewController.swift */; };
 		E43CE7971E78263200618C39 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7961E78263200618C39 /* RightViewController.swift */; };
 		E43CE79A1E78437A00618C39 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43CE7981E78437A00618C39 /* BaseTableViewCell.swift */; };
@@ -137,6 +140,9 @@
 
 /* Begin PBXFileReference section */
 		5E1AF2AD1E84740000A8DB7F /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		5E1AF2AF1E84777200A8DB7F /* MyApartmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApartmentsViewController.swift; sourceTree = "<group>"; };
+		5E1AF2B11E8481AD00A8DB7F /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		5E1AF2B31E848E1700A8DB7F /* AddApartmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddApartmentViewController.swift; sourceTree = "<group>"; };
 		E43CE7941E7825DF00618C39 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		E43CE7961E78263200618C39 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		E43CE7981E78437A00618C39 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -235,13 +241,16 @@
 		E43CE7B81E794CD600618C39 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5E1AF2B11E8481AD00A8DB7F /* AccountViewController.swift */,
+				5E1AF2B31E848E1700A8DB7F /* AddApartmentViewController.swift */,
 				E43CE7941E7825DF00618C39 /* LeftViewController.swift */,
+				E43CE7A21E78457200618C39 /* LoginViewController.swift */,
 				E4E1A1BA1E0A811D0027283B /* MainViewController.swift */,
+				5E1AF2AF1E84777200A8DB7F /* MyApartmentsViewController.swift */,
 				E43CE7961E78263200618C39 /* RightViewController.swift */,
+				E465B18D1E82CCF800C67A0A /* SignupViewController.swift */,
 				5E1AF2AD1E84740000A8DB7F /* SlideMenuController.swift */,
 				E43CE79C1E7843C700618C39 /* SubContentsViewController.swift */,
-				E43CE7A21E78457200618C39 /* LoginViewController.swift */,
-				E465B18D1E82CCF800C67A0A /* SignupViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -569,9 +578,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E1AF2B41E848E1700A8DB7F /* AddApartmentViewController.swift in Sources */,
 				E4E1A1BB1E0A811D0027283B /* MainViewController.swift in Sources */,
 				E43CE79D1E7843C700618C39 /* SubContentsViewController.swift in Sources */,
+				5E1AF2B21E8481AD00A8DB7F /* AccountViewController.swift in Sources */,
 				E465B17D1E798B0100C67A0A /* SWXMLHash.swift in Sources */,
+				5E1AF2B01E84777300A8DB7F /* MyApartmentsViewController.swift in Sources */,
 				E465B15C1E79790500C67A0A /* CollectionViewCell.swift in Sources */,
 				E43CE7A31E78457200618C39 /* LoginViewController.swift in Sources */,
 				E465B1901E83E24F00C67A0A /* TextField.swift in Sources */,

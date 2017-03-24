@@ -33,7 +33,7 @@ class SubContentsViewController : UIViewController {
 
         self.TitleLabel.text = apartment.title
         self.DateLabel.text = apartment.createdAt
-        self.PriceLabel.text = apartment.monthlyRent
+        self.PriceLabel.text = apartment.monthlyRent + "/month"
         self.DescriptionLabel.text = apartment.description
         self.NrRoommatesLabel.text = apartment.nrRoommates
         self.SizeLabel.text = apartment.sqFeet
@@ -63,11 +63,11 @@ class SubContentsViewController : UIViewController {
         }
 
         if apartment.creditScoreCheck == "true" {
-            self.CreditScoreLabel.textColor = UIColor.black
             self.CreditScoreLabel.text = "Credit score check"
         }
         else {
-            self.CreditScoreLabel.text = "No credit score check"
+            self.CreditScoreLabel.textColor = UIColor.black
+            self.CreditScoreLabel.text = "No Credit score check"
         }
 
         let url = URL(string: "http://lorempixel.com/728/320/city/")!
